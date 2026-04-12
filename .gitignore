@@ -27,3 +27,6 @@ submission/
 # Environment variables
 .env
 .env.*
+
+# Compiled changelog artifacts
+changelog/*.js
