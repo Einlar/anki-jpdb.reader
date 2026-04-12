@@ -32,7 +32,7 @@ const bindings = new Map<string, Set<HTMLElement>>();
 const validators: Partial<
   Record<keyof ConfigurationSchema, (value: unknown) => boolean | Promise<boolean>>
 > = {
-  jpdbApiToken: validateJPDBApiKey,
+  jpdbApiToken: (value: unknown): Promise<boolean> => validateJPDBApiKey(value as string),
 };
 
 const configurationUpdatedCommand = new ConfigurationUpdatedCommand();
@@ -63,8 +63,8 @@ withFields(async (field: HTMLInputElement) => {
 
 withElement('#apiTokenButton', (button) => {
   button.onclick = (): void => {
-    withElement('#jpdbApiToken', (i: HTMLInputElement) => {
-      void validateJPDBApiKey(i.value);
+    withElement('#jpdbApiToken', (el) => {
+      void validateJPDBApiKey((el as HTMLInputElement).value);
     });
   };
 });
@@ -117,13 +117,15 @@ withElement('#import-settings', (button) => {
       const text = await file.text();
       const data = JSON.parse(text) as Record<keyof ConfigurationSchema, string>;
 
-      Object.keys(data).forEach((key: keyof ConfigurationSchema) => {
-        if (!Object.keys(DEFAULT_CONFIGURATION).includes(key)) {
-          delete data[key];
+      Object.keys(data).forEach((key) => {
+        const k = key as keyof ConfigurationSchema;
+
+        if (!Object.keys(DEFAULT_CONFIGURATION).includes(k)) {
+          delete data[k];
         }
 
-        if (typeof data[key] !== 'string') {
-          data[key] = JSON.stringify(data[key]);
+        if (typeof data[k] !== 'string') {
+          data[k] = JSON.stringify(data[k]);
         }
       });
 
@@ -157,7 +159,8 @@ onBroadcastMessage('deckListUpdated', (decks) => {
     ...decks,
   ];
 
-  withElements('select[data-type=jpdb-deck]', (element: HTMLSelectElement) => {
+  withElements<'select'>('select[data-type=jpdb-deck]', (el) => {
+    const element = el as HTMLSelectElement;
     const currentValue = jpdbDeckFields.get(element);
 
     element.replaceChildren(
@@ -399,15 +402,16 @@ function withFields(cb: (field: HTMLInputElement) => Promise<void>, afterAll?: (
 
   withElements(
     'input, textarea, select, keybind-input, parsers-input, features-input, new-state-input',
-    (field: HTMLInputElement) => {
-      const internal = field.hasAttribute('internal');
+    (field) => {
+      const input = field as HTMLInputElement;
+      const internal = input.hasAttribute('internal');
       const ignored = ['hidden', 'submit', 'button'];
 
-      if (internal || ignored.includes(field.type)) {
+      if (internal || ignored.includes(input.type)) {
         return;
       }
 
-      promises.push(cb(field));
+      promises.push(cb(input));
     },
   );
 

@@ -58,11 +58,11 @@ const handlerCollection = new BackgroundCommandHandlerCollection(
 handlerCollection.listen();
 
 addInstallListener(async ({ reason }) => {
-  if (reason === OnInstalledReason.INSTALL) {
+  if ((reason as chrome.runtime.OnInstalledReason) === OnInstalledReason.INSTALL) {
     await openOptionsPage();
   }
 
-  if (reason === OnInstalledReason.UPDATE) {
+  if ((reason as chrome.runtime.OnInstalledReason) === OnInstalledReason.UPDATE) {
     // NOTE: OnUpdate In the future we may use this for schema updates
 
     const skipReleaseNotes = await getConfiguration('skipReleaseNotes');

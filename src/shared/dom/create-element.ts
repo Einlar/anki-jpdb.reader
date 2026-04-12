@@ -75,10 +75,8 @@ export function createElement(
   }
 
   (options.children ?? [])
-    .filter((ch) => ch)
-    .forEach((ch: HTMLElement | DOMElementTagOptions<keyof HTMLElementTagNameMap>) =>
-      appendElement(e, ch instanceof HTMLElement ? ch : createElement(ch)),
-    );
+    .filter((ch): ch is HTMLElement | DOMElementTagOptions<keyof HTMLElementTagNameMap> => !!ch)
+    .forEach((ch) => appendElement(e, ch instanceof HTMLElement ? ch : createElement(ch)));
 
   return e;
 }

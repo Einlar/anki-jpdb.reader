@@ -307,7 +307,7 @@ export class TextHighlighter extends BaseTextHighlighter {
   }
 
   protected createRubyNodesForFragment(fragment: Fragment, rubies: JPDBRuby[]): Node[] {
-    const nodeText = fragment.node.textContent!;
+    const nodeText = fragment.node.textContent;
     let lastIndex = 0;
     const nodes: Node[] = [];
 

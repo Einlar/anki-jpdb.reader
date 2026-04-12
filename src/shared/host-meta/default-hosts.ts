@@ -245,7 +245,7 @@ export const DEFAULT_HOSTS: PredefinedHostMeta[] = [
     addedObserver: {
       notifyFor: '.sentence',
       checkNested: ':has(.card-sentence)',
-    }
+    },
   },
   {
     id: 'asbplayer-parser',

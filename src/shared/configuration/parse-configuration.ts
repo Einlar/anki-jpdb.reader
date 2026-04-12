@@ -10,13 +10,13 @@ import { ConfigurationSchema, Keybind } from './types';
 // Fetch all configs which should be a number, boolean or object
 // Use those to properly parse stored values
 const NUMBER_KEYS = Object.keys(DEFAULT_CONFIGURATION).filter(
-  (key: keyof ConfigurationSchema) => typeof DEFAULT_CONFIGURATION[key] === 'number',
+  (key) => typeof DEFAULT_CONFIGURATION[key as keyof ConfigurationSchema] === 'number',
 ) as ConfigurationNumberKeys;
 const BOOLEAN_KEYS = Object.keys(DEFAULT_CONFIGURATION).filter(
-  (key: keyof ConfigurationSchema) => typeof DEFAULT_CONFIGURATION[key] === 'boolean',
+  (key) => typeof DEFAULT_CONFIGURATION[key as keyof ConfigurationSchema] === 'boolean',
 ) as ConfigurationBooleanKeys;
 const OBJECT_KEYS = Object.keys(DEFAULT_CONFIGURATION).filter(
-  (key: keyof ConfigurationSchema) => typeof DEFAULT_CONFIGURATION[key] === 'object',
+  (key) => typeof DEFAULT_CONFIGURATION[key as keyof ConfigurationSchema] === 'object',
 ) as ConfigurationObjectKeys;
 
 export const parseConfiguration = <K extends keyof ConfigurationSchema>(

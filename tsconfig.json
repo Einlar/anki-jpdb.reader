@@ -5,15 +5,16 @@
     "module": "es6",
     "target": "es2021",
     "allowJs": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "removeComments": true,
     "strictNullChecks": true,
-    "baseUrl": "./",
+    "rootDir": ".",
+    "types": ["chrome", "node"],
     "paths": {
-      "@shared/*": ["src/shared/*"],
-      "@styles/*": ["src/styles/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
   "include": ["src/**/*", "changelog/**/*"]

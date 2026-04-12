@@ -9,6 +9,6 @@ export type AbortableSequence<TPromise = void, TData = unknown> = Sequence<TProm
 };
 
 export type PreparedRequest = {
-  resolve: (value: unknown) => void;
-  reject: (reason: Error) => void;
+  resolve(value: unknown): void;
+  reject(reason: Error): void;
 };

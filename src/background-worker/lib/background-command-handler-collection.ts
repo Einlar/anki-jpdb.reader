@@ -18,20 +18,21 @@ type Response =
     };
 
 export class BackgroundCommandHandlerCollection {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   private readonly handlers = new Map<
     string,
-    BackgroundCommandHandler<BackgroundCommand<unknown[], unknown>>
+    BackgroundCommandHandler<BackgroundCommand<any[], any>>
   >();
 
-  public constructor(
-    ...handlers: BackgroundCommandHandler<BackgroundCommand<unknown[], unknown>>[]
-  ) {
+  public constructor(...handlers: BackgroundCommandHandler<BackgroundCommand<any[], any>>[]) {
+    /* eslint-enable @typescript-eslint/no-explicit-any */
     handlers.forEach((handler) => {
       this.handlers.set(handler.command.name, handler);
     });
   }
 
-  public register(handler: BackgroundCommandHandler<BackgroundCommand<unknown[], unknown>>): void {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public register(handler: BackgroundCommandHandler<BackgroundCommand<any[], any>>): void {
     this.handlers.set(handler.command.name, handler);
   }
 
@@ -44,6 +45,7 @@ export class BackgroundCommandHandlerCollection {
           return false;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const handlerResult = handler.handle(sender, ...request.args);
         const promise = Promise.resolve(handlerResult);
 

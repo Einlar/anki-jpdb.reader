@@ -5,10 +5,10 @@ export class HostEvaluator {
   private _isMainFrame = window === window.top;
 
   private _targetedTriggerMeta: HostMeta | undefined;
-  private _targetedAutomaticMeta: HostMeta[];
+  private _targetedAutomaticMeta!: HostMeta[];
 
   private _defaultTriggerMeta: HostMeta | undefined;
-  private _defaultAutomaticMeta: HostMeta[];
+  private _defaultAutomaticMeta!: HostMeta[];
 
   private _host: string;
 

@@ -32,8 +32,8 @@ export class HTMLMiningInputElement extends HTMLElement {
   protected _models: string[] = [];
   protected _fields: string[] = [];
 
-  protected _shadow: ShadowRoot;
-  protected _input: HTMLInputElement;
+  protected _shadow!: ShadowRoot;
+  protected _input!: HTMLInputElement;
   protected _templateContainer = createElement('div', { id: 'template-list' });
   protected _selects = {
     deckInput: createElement('select'),
@@ -107,7 +107,7 @@ export class HTMLMiningInputElement extends HTMLElement {
       | undefined;
 
     if (changeHandler) {
-      changeHandler.apply(this, [oldValue, newValue]);
+      void changeHandler.apply(this, [oldValue, newValue]);
     }
   }
 
@@ -272,14 +272,13 @@ export class HTMLMiningInputElement extends HTMLElement {
       });
       const templateSelect = createElement('select', {
         attributes: { name: 'template' },
-        children: Object.keys(TemplateTargetTranslations).map(
-          (template: keyof typeof TemplateTargetTranslations) => {
-            return createElement('option', {
-              innerText: TemplateTargetTranslations[template],
-              attributes: { value: template },
-            });
-          },
-        ),
+        children: Object.keys(TemplateTargetTranslations).map((template) => {
+          return createElement('option', {
+            innerText:
+              TemplateTargetTranslations[template as keyof typeof TemplateTargetTranslations],
+            attributes: { value: template },
+          });
+        }),
       });
 
       [fieldSelect, templateSelect].forEach((select) => {
@@ -439,8 +438,8 @@ export class HTMLMiningInputElement extends HTMLElement {
   protected async updateFields(ankiConnectUrl: string, model: string): Promise<void> {
     this._fields = model ? await getFields(model, { ankiConnectUrl }) : [];
 
-    ['wordInput', 'readingInput'].forEach((key: keyof typeof this._selects) => {
-      const select = this._selects[key];
+    ['wordInput', 'readingInput'].forEach((key) => {
+      const select = this._selects[key as keyof typeof this._selects];
       const includeEmpty = key === 'readingInput';
       const fields = [includeEmpty ? [''] : [], this._fields].flat();
 

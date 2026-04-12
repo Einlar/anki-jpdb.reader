@@ -285,11 +285,11 @@ export abstract class BaseParser {
    * Used to parse elements that may become visible at a later point in time, for example when scrolling.
    * Unlike the getVisibleObserver method, this method also parses the visible elements.
    *
-   * @param {(node: HTMLElement | Text) => boolean} filter A filter for the now visible nodes childnodes. Childnodes that do not pass the filter will not be parsed
+   * @param {(node: Node | Element) => boolean} filter A filter for the now visible nodes childnodes. Childnodes that do not pass the filter will not be parsed
    * @returns {IntersectionObserver}
    */
   protected getParseVisibleObserver(
-    filter?: (node: HTMLElement | Text) => boolean,
+    filter?: (node: Node | Element) => boolean,
   ): IntersectionObserver {
     const observer = this.getVisibleObserver(
       (elements) => this.visibleObserverOnEnter(elements, observer, filter),
@@ -307,12 +307,12 @@ export abstract class BaseParser {
    *
    * @param {Element[]} elements The element changes
    * @param {IntersectionObserver} observer The observer instance
-   * @param {(node: HTMLElement | Text) => boolean} filter A filter function to filter the childnodes of the elements
+   * @param {(node: Node | Element) => boolean} filter A filter function to filter the childnodes of the elements
    */
   protected visibleObserverOnEnter(
     elements: Element[],
     observer: IntersectionObserver,
-    filter?: (node: HTMLElement | Text) => boolean,
+    filter?: (node: Node | Element) => boolean,
   ): void {
     const { batchController } = Registry;
 

@@ -7,7 +7,7 @@ type ObservedAttributes = (typeof observedAttributes)[number];
 export class HTMLKeybindInputElement extends HTMLElement {
   public static observedAttributes = observedAttributes;
 
-  protected _input: HTMLInputElement;
+  protected _input!: HTMLInputElement;
   protected _buttons: HTMLInputElement[] = [];
 
   protected static active?: HTMLKeybindInputElement;
@@ -65,7 +65,7 @@ export class HTMLKeybindInputElement extends HTMLElement {
       | undefined;
 
     if (changeHandler) {
-      changeHandler.apply(this, [oldValue, newValue]);
+      void changeHandler.apply(this, [oldValue, newValue]);
     }
   }
 
@@ -166,7 +166,7 @@ export class HTMLKeybindInputElement extends HTMLElement {
     (event.target as HTMLInputElement).value = 'Press a key, escape to cancel';
 
     HTMLKeybindInputElement.EVENTS.forEach((event) =>
-      document.addEventListener(event, HTMLKeybindInputElement.keyListener),
+      document.addEventListener(event, HTMLKeybindInputElement.keyListener as EventListener),
     );
 
     HTMLKeybindInputElement.active = this;
@@ -177,7 +177,7 @@ export class HTMLKeybindInputElement extends HTMLElement {
     this.updateButtonValues();
 
     HTMLKeybindInputElement.EVENTS.forEach((event) =>
-      document.removeEventListener(event, HTMLKeybindInputElement.keyListener),
+      document.removeEventListener(event, HTMLKeybindInputElement.keyListener as EventListener),
     );
 
     HTMLKeybindInputElement.active = undefined;

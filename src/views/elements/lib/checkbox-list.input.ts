@@ -16,7 +16,7 @@ export abstract class CheckboxListInput<
 
   protected abstract allowInspect?: boolean;
   protected abstract invertList?: boolean;
-  protected _input: HTMLInputElement;
+  protected _input!: HTMLInputElement;
   protected _checkboxes: Record<string, HTMLInputElement> = {};
 
   //#region Attributes
@@ -55,7 +55,7 @@ export abstract class CheckboxListInput<
       | undefined;
 
     if (changeHandler) {
-      changeHandler.apply(this, [oldValue, newValue]);
+      void changeHandler.apply(this, [oldValue, newValue]);
     }
   }
 
