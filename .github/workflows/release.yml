@@ -43,7 +43,6 @@ jobs:
           prerelease: false
           files: |
             packages/anki-jpdb.reader-chromium.zip
-            packages/anki-jpdb.reader-firefox.xpi
             packages/anki-jpdb.reader-firefox-signed.xpi
             packages/LICENSE.md
         id: 'automatic_releases'
