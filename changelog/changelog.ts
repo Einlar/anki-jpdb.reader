@@ -15,6 +15,7 @@ import { _064 } from './0.6.4';
 import { _070 } from './0.7.0';
 import { _080 } from './0.8.0';
 import { _081 } from './0.8.1';
+import { _082 } from './0.8.2';
 import { Changelog } from './types';
 
 export const changelog: Changelog = {
@@ -35,4 +36,5 @@ export const changelog: Changelog = {
   '0.7.0': _070,
   '0.8.0': _080,
   '0.8.1': _081,
+  '0.8.2': _082,
 };
