@@ -1,6 +1,19 @@
 import { exec } from 'child_process';
 import { unlinkSync, writeFileSync } from 'fs';
+import { createRequire } from 'module';
 import { changelog } from '../changelog/changelog.js';
+
+const require = createRequire(import.meta.url);
+const { version } = require('../package.json');
+const newestKey = Object.keys(changelog).at(-1);
+
+if (newestKey !== version) {
+  console.error(
+    `Error: package.json version is "${version}" but the newest changelog entry is "${newestKey}".`
+  );
+  console.error(`Add a changelog entry in changelog/${version}.ts before releasing.`);
+  process.exit(1);
+}
 
 const execute = (command) => {
   return new Promise((resolve, reject) => {
@@ -26,7 +39,11 @@ for (const key of Object.keys(changelog).reverse()) {
   let DATE = new Date().toISOString().split('T')[0].replaceAll('-', '.');
 
   if (!newest) {
-    DATE = (await execute(CMD + key)).split(' ')[0].replaceAll('-', '.');
+    try {
+      DATE = (await execute(CMD + key)).split(' ')[0].replaceAll('-', '.');
+    } catch {
+      DATE = (await execute(`git log -1 --format=%ai -- changelog/${key}.ts`)).split(' ')[0].replaceAll('-', '.');
+    }
   }
 
   newest = false;

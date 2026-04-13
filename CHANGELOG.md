@@ -1,3 +1,28 @@
+## 0.8.2 (2026.04.13)
+- chore: Improved release CI pipeline to automatically sign and attach the Firefox extension. [Platform]
+
+
+## 0.8.1 (2026.04.12)
+- fix: Fixed mokuro parser to correctly handle SPA navigation and page turns. [#398](https://github.com/Kagu-chan/anki-jpdb.reader/issues/398) [Parser]
+- add: Added example sentence parsing for Bunpro and JPDB. [#401](https://github.com/Kagu-chan/anki-jpdb.reader/issues/401) [Parser]
+- chore: Updated all dependencies to latest versions. [Platform]
+
+
+## 0.8.0 (2025.10.12)
+- fix: Fixed bunpro not parsing on lessons. [#61](https://github.com/Kagu-chan/anki-jpdb.reader/issues/61) [Hosts]
+- fix: Fixed an issue where a card state update would set the wrong class on the element. [#314](https://github.com/Kagu-chan/anki-jpdb.reader/issues/314) [Texthighlighter]
+- fix: Improved interaction between the extension and FastClick. [#331](https://github.com/Kagu-chan/anki-jpdb.reader/issues/331) [Popup]
+- fix: Fixed an issue where words without frequency would be marked as frequent. [#364](https://github.com/Kagu-chan/anki-jpdb.reader/issues/364) [Texthighlighter]
+- change: Removed the save button from the settings page and added automatic saving. [Settings]
+- change: The closing keybind for the popup is now configurable (default: Escape). [Popup]
+- add: Added the option to highlight i+1 sentences. [#54](https://github.com/Kagu-chan/anki-jpdb.reader/issues/54) [Texthighlighter]
+- add: Added a delay option for automatic parser initialization. [#238](https://github.com/Kagu-chan/anki-jpdb.reader/issues/238) [Hosts]
+- add: Allow setting a keybind to switch between satori event sources. [#307](https://github.com/Kagu-chan/anki-jpdb.reader/issues/307) [Parser]
+- add: Allow showing an overlay for satori event sources. [#307](https://github.com/Kagu-chan/anki-jpdb.reader/issues/307) [Parser]
+- add: Added the option to choose which card states are considered new. [Texthighlighter]
+- remove: Removed the legacy text highlighter. [Texthighlighter]
+
+
 ## 0.7.0 (2025.08.10)
 - fix: Fixed a race condition where sometimes a reload would not parse the page. [#306](https://github.com/Kagu-chan/anki-jpdb.reader/issues/306) [Parser]
 - fix: Fixed a race condition where custom styles were not applied correctly. [#330](https://github.com/Kagu-chan/anki-jpdb.reader/issues/330) [Texthighlighter]

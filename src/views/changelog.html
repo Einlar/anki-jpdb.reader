@@ -1,5 +1,30 @@
 <link rel="stylesheet" media="screen" href="../css/changelog.css" />
 <h2>Changelog</h2>
+<h5>0.8.2 (2026.04.13)</h5>
+<ul>
+<li><label class="type outline chore">chore</label><span class="description">Improved release CI pipeline to automatically sign and attach the Firefox extension.</span><label class="category outline">Platform</label></li>
+</ul>
+<h5>0.8.1 (2026.04.12)</h5>
+<ul>
+<li><label class="type outline fix">fix</label><span class="description">Fixed mokuro parser to correctly handle SPA navigation and page turns.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/398" target="_blank">#398</a>]<label class="category outline">Parser</label></li>
+<li><label class="type outline add">add</label><span class="description">Added example sentence parsing for Bunpro and JPDB.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/401" target="_blank">#401</a>]<label class="category outline">Parser</label></li>
+<li><label class="type outline chore">chore</label><span class="description">Updated all dependencies to latest versions.</span><label class="category outline">Platform</label></li>
+</ul>
+<h5>0.8.0 (2025.10.12)</h5>
+<ul>
+<li><label class="type outline fix">fix</label><span class="description">Fixed bunpro not parsing on lessons.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/61" target="_blank">#61</a>]<label class="category outline">Hosts</label></li>
+<li><label class="type outline fix">fix</label><span class="description">Fixed an issue where a card state update would set the wrong class on the element.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/314" target="_blank">#314</a>]<label class="category outline">Texthighlighter</label></li>
+<li><label class="type outline fix">fix</label><span class="description">Improved interaction between the extension and FastClick.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/331" target="_blank">#331</a>]<label class="category outline">Popup</label></li>
+<li><label class="type outline fix">fix</label><span class="description">Fixed an issue where words without frequency would be marked as frequent.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/364" target="_blank">#364</a>]<label class="category outline">Texthighlighter</label></li>
+<li><label class="type outline change">change</label><span class="description">Removed the save button from the settings page and added automatic saving.</span><label class="category outline">Settings</label></li>
+<li><label class="type outline change">change</label><span class="description">The closing keybind for the popup is now configurable (default: Escape).</span><label class="category outline">Popup</label></li>
+<li><label class="type outline add">add</label><span class="description">Added the option to highlight i+1 sentences.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/54" target="_blank">#54</a>]<label class="category outline">Texthighlighter</label></li>
+<li><label class="type outline add">add</label><span class="description">Added a delay option for automatic parser initialization.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/238" target="_blank">#238</a>]<label class="category outline">Hosts</label></li>
+<li><label class="type outline add">add</label><span class="description">Allow setting a keybind to switch between satori event sources.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/307" target="_blank">#307</a>]<label class="category outline">Parser</label></li>
+<li><label class="type outline add">add</label><span class="description">Allow showing an overlay for satori event sources.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/307" target="_blank">#307</a>]<label class="category outline">Parser</label></li>
+<li><label class="type outline add">add</label><span class="description">Added the option to choose which card states are considered new.</span><label class="category outline">Texthighlighter</label></li>
+<li><label class="type outline remove">remove</label><span class="description">Removed the legacy text highlighter.</span><label class="category outline">Texthighlighter</label></li>
+</ul>
 <h5>0.7.0 (2025.08.10)</h5>
 <ul>
 <li><label class="type outline fix">fix</label><span class="description">Fixed a race condition where sometimes a reload would not parse the page.</span> [ <a href="https://github.com/Kagu-chan/anki-jpdb.reader/issues/306" target="_blank">#306</a>]<label class="category outline">Parser</label></li>
